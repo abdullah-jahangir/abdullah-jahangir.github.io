@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~/home: Abdullah Jahangir</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --paper: #FCFCFA;
+  --paper-dim: #F3F3F0;
+  --ink: #1C1B19;
+  --ink-soft: #5B564A;
+  --ink-faint: #9A9484;
+  --ribbon: #B23A2E;
+  --moss: #3A5941;
+  --sage: #8FB88C;
+  --rule: #C9C1AC;
+  --ruled-line: rgba(28,27,25,0.08);
+  --grid-line: #1C1B19;
+  --disp: 'JetBrains Mono', monospace;
+  --body: 'IBM Plex Mono', monospace;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background-color:var(--paper);
+  background-image: linear-gradient(var(--ruled-line) 1px, transparent 1px);
+  background-size:100% 24px;
+  background-position:0 18px;
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:15px;
+  line-height:24px;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--ribbon); color:var(--paper);}
+
+/* ---- top bar: fake terminal chrome ---- */
+.chrome{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 24px;
+  border-bottom:1px solid var(--rule);
+  font-family:var(--disp);
+  font-size:12px;
+  color:var(--ink-soft);
+  letter-spacing:.04em;
+  position:sticky;
+  top:0;
+  background:var(--paper);
+  z-index:50;
+}
+.chrome .dots span{
+  display:inline-block;
+  width:9px; height:9px;
+  border-radius:50%;
+  border:1px solid var(--ink-soft);
+  margin-right:6px;
+}
+.chrome nav{display:flex; gap:24px;}
+.chrome nav a{
+  color:var(--ink-soft);
+  text-decoration:none;
+  cursor:pointer;
+  transition:color .15s;
+}
+.chrome nav a:hover, .chrome nav a.active{color:var(--ribbon);}
+.chrome nav a.active::before{content:"* ";}
+
+/* ---- hero ---- */
+.hero{
+  max-width:900px;
+  margin:0 auto;
+  padding:72px 24px 48px;
+}
+.banner{
+  font-family:var(--disp);
+  font-weight:700;
+  font-size:clamp(10px, 1.7vw, 15px);
+  line-height:1.05;
+  white-space:pre;
+  color:var(--ink);
+  margin:0 0 24px;
+  overflow-x:auto;
+}
+.type-line{
+  font-family:var(--disp);
+  font-size:15px;
+  color:var(--moss);
+}
+.type-line .prompt{color:var(--ribbon); margin-right:8px;}
+#typed::after{
+  content:"█";
+  animation: blink 1s step-start infinite;
+  margin-left:2px;
+  color:var(--ink);
+}
+@keyframes blink{50%{opacity:0;}}
+
+.hero p.lede{
+  margin:24px 0 0;
+  max-width:60ch;
+  color:var(--ink);
+  font-size:16px;
+}
+.hero p.lede .accent{color:var(--ribbon);}
+
+/* ---- section wrapper ---- */
+section.panel{
+  max-width:900px;
+  margin:0 auto;
+  padding:0 24px 72px;
+  display:none;
+}
+section.panel.active{display:block;}
+
+.box-title{
+  font-family:var(--disp);
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:0 0 24px;
+}
+.box-title::after{
+  content:"";
+  flex:1;
+  border-top:1px dashed var(--rule);
+}
+
+/* red notebook margin, home section only */
+#home{
+  position:relative;
+  padding-left:112px;
+}
+#home::before{
+  content:"";
+  position:absolute;
+  top:0; bottom:0; left:88px;
+  width:1px;
+  background:var(--ribbon);
+}
+.hmargin{
+  height:0;
+  border-top:1px solid var(--sage);
+  border-bottom:1px solid var(--sage);
+  padding-top:3px;
+  margin:0 0 32px -112px;
+  width:calc(100% + 112px);
+}
+@media(max-width:640px){
+  #home{padding-left:0;}
+  #home::before{display:none;}
+  .hmargin{margin-left:0; width:100%;}
+}
+
+.section-heading{
+  font-family:var(--disp);
+  font-weight:800;
+  font-size:26px;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  margin:0 0 24px;
+}
+
+/* home entries: date sits in the margin, to the left of the rule line */
+#home .entry{
+  display:block;
+  position:relative;
+  padding-left:0;
+}
+#home .entry .date{
+  position:absolute;
+  left:-112px;
+  width:80px;
+  min-width:0;
+  text-align:right;
+  padding-top:2px;
+}
+@media(max-width:640px){
+  #home .entry{ display:flex; gap:16px; }
+  #home .entry .date{ position:static; width:auto; min-width:78px; text-align:left; padding-top:2px; }
+}
+
+/* box-drawn card */
+.card{
+  border:1px solid var(--ink);
+  padding:24px;
+  margin-bottom:24px;
+  position:relative;
+  background:var(--paper-dim);
+}
+.card .tag{
+  position:absolute;
+  top:-10px; left:14px;
+  background:var(--paper);
+  padding:0 8px;
+  font-family:var(--disp);
+  font-size:11px;
+  color:var(--ribbon);
+  letter-spacing:.06em;
+}
+.card h3{
+  margin:4px 0 6px;
+  font-family:var(--disp);
+  font-size:15px;
+  font-weight:700;
+}
+.card p{margin:0 0 10px; color:var(--ink-soft); font-size:13.5px;}
+.card .links{margin-top:2px;}
+.card .links a{
+  font-family:var(--disp);
+  font-size:11.5px;
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid var(--ribbon);
+  margin-right:16px;
+}
+.card .links a:hover{color:var(--ribbon);}
+
+.wip-banner{
+  font-family:var(--disp);
+  font-size:12px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--ribbon);
+  border:1px dashed var(--ribbon);
+  background:var(--paper-dim);
+  padding:14px 16px;
+  margin-bottom:24px;
+}
+
+.card a.art-link{display:block; cursor:pointer;}
+.card a.art-link img{transition:opacity .15s;}
+.card a.art-link:hover img{opacity:.75;}
+.card a.art-link:hover + h3{color:var(--ribbon);}
+.card .meta{
+  font-size:11.5px;
+  color:var(--ink-faint);
+  font-family:var(--disp);
+}
+.card .meta span{margin-right:14px;}
+.card .meta span::before{content:"› ";}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px 24px;
+}
+@media(max-width:640px){.grid{grid-template-columns:1fr;}}
+
+/* ascii thumbnail */
+.ascii-thumb{
+  font-family:var(--disp);
+  font-size:8px;
+  line-height:1;
+  white-space:pre;
+  color:var(--ink-soft);
+  border:1px dashed var(--rule);
+  padding:8px;
+  margin-bottom:12px;
+  overflow:hidden;
+  max-height:90px;
+}
+
+/* letterboxd */
+.lb-row{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+  padding:10px 0;
+  border-bottom:1px solid var(--rule);
+}
+.lb-row:last-child{border-bottom:none;}
+.lb-row a{color:var(--ink); text-decoration:none; font-size:13.5px;}
+.lb-row a:hover{color:var(--ribbon);}
+.lb-row .lb-year{color:var(--ink-faint); font-size:11.5px; margin-left:6px;}
+.lb-row .lb-stars{
+  font-family:var(--disp);
+  font-size:12px;
+  color:var(--ribbon);
+  white-space:nowrap;
+}
+.lb-footer{
+  margin-top:12px;
+  font-family:var(--disp);
+  font-size:11.5px;
+  color:var(--ink-faint);
+}
+.lb-footer a{color:var(--ink-soft); border-bottom:1px dashed var(--ink-soft); text-decoration:none;}
+.lb-footer a:hover{color:var(--ribbon); border-color:var(--ribbon);}
+
+/* writing list */
+.entry{
+  display:flex;
+  gap:16px;
+  padding:12px 0;
+  border-bottom:1px solid var(--rule);
+}
+.entry:last-child{border-bottom:none;}
+.entry .date{
+  font-family:var(--disp);
+  font-size:11px;
+  color:var(--ink-faint);
+  min-width:78px;
+  padding-top:2px;
+}
+.entry .body h3{
+  margin:0 0 4px;
+  font-size:14.5px;
+  font-family:var(--disp);
+  font-weight:600;
+}
+.entry .body p{margin:0; color:var(--ink-soft); font-size:13px;}
+.entry a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ribbon);}
+.entry a:hover{color:var(--ribbon);}
+
+/* about */
+.about-grid{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:24px;
+}
+@media(max-width:640px){.about-grid{grid-template-columns:1fr;}}
+.stat-block{border-left:2px solid var(--ribbon); padding-left:12px; margin-bottom:12px;}
+.stat-block .k{font-family:var(--disp); font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em;}
+.stat-block .v{font-size:14px; margin-top:2px;}
+
+/* contact */
+.contact-box{
+  border:1px solid var(--ink);
+  padding:24px;
+  font-family:var(--disp);
+  font-size:13px;
+}
+.contact-box .line{margin:6px 0;}
+.contact-box .k{color:var(--ink-faint); display:inline-block; width:110px;}
+.contact-box a{color:var(--ink); text-decoration:none; border-bottom:1px dashed var(--ink-soft);}
+.contact-box a:hover{color:var(--ribbon); border-color:var(--ribbon);}
+
+footer{
+  max-width:900px;
+  margin:0 auto;
+  padding:24px 24px 72px;
+  font-family:var(--disp);
+  font-size:11px;
+  color:var(--ink-faint);
+  border-top:1px solid var(--rule);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+[data-jump]{cursor:pointer;}
+
+/* focus visibility */
+a:focus-visible, .chrome nav a:focus-visible{
+  outline:2px solid var(--ribbon);
+  outline-offset:2px;
+}
+
+@media(prefers-reduced-motion: reduce){
+  #typed::after{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="chrome">
+  <div class="dots"><span></span><span></span><span></span> visitor@abdullahjahangir:~$</div>
+  <nav id="topnav">
+    <a data-target="home" class="active">home</a>
+    <a data-target="art">art</a>
+    <a data-target="tech">tech</a>
+    <a data-target="life">life</a>
+    <a data-target="about">about</a>
+    <a data-target="contact">contact</a>
+  </nav>
+</div>
+
+<div class="hero" id="hero">
+  <pre class="banner"> _    _ _       _____                              _         _       _ _       _
+ | |  | (_)     |_   _|                       /\   | |       | |     | | |     | |
+ | |__| |_        | |     __ _ _ __ ___      /  \  | |__   __| |_   _| | | __ _| |__
+ |  __  | |       | |    / _` | '_ ` _ \    / /\ \ | '_ \ / _` | | | | | |/ _` | '_ \
+ | |  | | |  _   _| |_  | (_| | | | | | |  / ____ \| |_) | (_| | |_| | | | (_| | | | |
+ |_|  |_|_| ( ) |_____|  \__,_|_| |_| |_| /_/    \_\_.__/ \__,_|\__,_|_|_|\__,_|_| |_|
+            |/                                                                        </pre>
+
+  <div class="type-line"><span class="prompt">$</span><span id="typed"></span></div>
+
+  <p class="lede">I write code, take photos, and keep a running list of whatever's got my attention lately. <span class="accent">Nothing fancy here, just a page I update when something feels worth noting.</span> Pick a directory above.</p>
+</div>
+
+<!-- HOME -->
+<section class="panel active" id="home">
+  <h2 class="section-heading">Latest</h2>
+  <div class="hmargin"></div>
+  <div id="home-list"></div>
+</section>
+
+<!-- ART -->
+<section class="panel" id="art">
+  <div class="box-title">art / photography</div>
+  <div class="wip-banner" id="art-wip" style="display:none;">work in progress, new photos going up soon</div>
+  <div class="grid" id="art-grid"></div>
+</section>
+
+<!-- TECH -->
+<section class="panel" id="tech">
+  <div class="box-title">tech / projects</div>
+  <div id="tech-list"></div>
+</section>
+
+<!-- LIFE -->
+<section class="panel" id="life">
+  <div class="box-title">life</div>
+  <div id="life-list"></div>
+
+  <div class="box-title" id="letterboxd-title" style="display:none;">recently watched</div>
+  <div id="letterboxd-list"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="panel" id="about">
+  <div class="box-title">about</div>
+  <div class="about-grid">
+    <div>
+      <div class="stat-block"><div class="k">based in</div><div class="v">New York City, NY</div></div>
+      <div class="stat-block"><div class="k">currently</div><div class="v">building &amp; shooting</div></div>
+      <div class="stat-block"><div class="k">tools</div><div class="v">JS, Python, an old camera</div></div>
+    </div>
+    <div>
+      <p>I split my time between writing software and shooting film, some weeks more one than the other. This site is where both end up, along with a running list of whatever's caught my attention lately.</p>
+      <p>Nothing here is especially polished. It's more of a working notebook than a portfolio; things show up half-finished and get updated as I go.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="panel" id="contact">
+  <div class="box-title">contact</div>
+  <div class="contact-box">
+    <div class="line"><span class="k">email</span><a href="mailto:abdullahjahangir121@gmail.com">abdullahjahangir121@gmail.com</a></div>
+    <div class="line"><span class="k">github</span><a href="https://github.com/abdullah-jahangir" target="_blank" rel="noopener">github.com/abdullah-jahangir</a></div>
+    <div class="line"><span class="k">rss</span><a href="#">/feed.xml</a></div>
+    <div class="line"><span class="k">status</span>usually replies within a few days</div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 · built with a monospace font and no regrets</span>
+  <span id="clock"></span>
+</footer>
+
+<script>
+// typing effect
+const phrases = ["Hi, I'm Abdullah", "whoami → software + photos, mostly", "cat interests.txt → cameras, code, good rooms", "ls → whatever's on my mind lately"];
+let pi = 0, ci = 0, deleting = false;
+const typedEl = document.getElementById('typed');
+function tick(){
+  const phrase = phrases[pi];
+  if(!deleting){
+    ci++;
+    typedEl.textContent = phrase.slice(0, ci);
+    if(ci === phrase.length){ deleting = true; setTimeout(tick, 1800); return; }
+  } else {
+    ci--;
+    typedEl.textContent = phrase.slice(0, ci);
+    if(ci === 0){ deleting = false; pi = (pi+1) % phrases.length; }
+  }
+  setTimeout(tick, deleting ? 30 : 45);
+}
+tick();
+
+// tab switching
+const links = document.querySelectorAll('#topnav a');
+const panels = document.querySelectorAll('section.panel');
+function show(id){
+  panels.forEach(p => p.classList.toggle('active', p.id === id));
+  links.forEach(l => l.classList.toggle('active', l.dataset.target === id));
+  document.getElementById('hero').style.display = (id === 'home') ? '' : 'none';
+}
+links.forEach(l => l.addEventListener('click', () => show(l.dataset.target)));
+
+// event delegation so dynamically-rendered "see art →" links work too
+document.body.addEventListener('click', (e) => {
+  const jump = e.target.closest('[data-jump]');
+  if (jump){ e.preventDefault(); show(jump.dataset.jump); }
+});
+
+// --- content loading & rendering ---
+function esc(s){
+  const d = document.createElement('div');
+  d.textContent = s == null ? '' : String(s);
+  return d.innerHTML;
+}
+
+function renderLifeEntry(item){
+  return `<div class="entry">
+    <div class="date">${esc(item.date)}</div>
+    <div class="body"><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p></div>
+  </div>`;
+}
+
+function renderArtCard(item){
+  const thumb = item.image
+    ? `<img src="${esc(item.image)}" alt="${esc(item.title)}" style="width:100%;display:block;margin-bottom:12px;border:1px dashed var(--rule);">`
+    : `<div class="ascii-thumb">${esc(item.ascii || '')}</div>`;
+  const media = item.link
+    ? `<a class="art-link" href="${esc(item.link)}" target="_blank" rel="noopener">${thumb}</a>`
+    : thumb;
+  const meta = (item.meta || []).map(m => `<span>${esc(m)}</span>`).join('');
+  return `<div class="card">
+    <span class="tag">${esc(item.tag || '')}</span>
+    ${media}
+    <h3>${esc(item.title)}</h3>
+    <p>${esc(item.body)}</p>
+    <div class="meta">${meta}</div>
+  </div>`;
+}
+
+function renderTechCard(item){
+  const meta = (item.meta || []).map(m => `<span>${esc(m)}</span>`).join('');
+  const links = [];
+  if (item.repo) links.push(`<a href="${esc(item.repo)}" target="_blank" rel="noopener">code →</a>`);
+  if (item.demo) links.push(`<a href="${esc(item.demo)}" target="_blank" rel="noopener">live →</a>`);
+  return `<div class="card">
+    <span class="tag">${esc(item.tag || '')}</span>
+    <h3>${esc(item.title)}</h3>
+    <p>${esc(item.body)}</p>
+    <div class="meta">${meta}</div>
+    ${links.length ? `<div class="links">${links.join('')}</div>` : ''}
+  </div>`;
+}
+
+function stars(rating){
+  const full = Math.floor(rating);
+  const half = rating - full >= 0.5;
+  return '★'.repeat(full) + (half ? '½' : '');
+}
+
+function renderLbRow(item){
+  return `<div class="lb-row">
+    <a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}<span class="lb-year">${esc(item.year)}</span></a>
+    <span class="lb-stars">${esc(stars(item.rating))}</span>
+  </div>`;
+}
+
+function byDateDesc(a, b){ return new Date(b.date) - new Date(a.date); }
+
+async function loadContent(){
+  let data;
+  try{
+    const res = await fetch('content.json');
+    data = await res.json();
+  } catch(err){
+    console.error('Could not load content.json', err);
+    return;
+  }
+
+  const life = (data.life || []).slice().sort(byDateDesc);
+  const art  = (data.art  || []).slice().sort(byDateDesc);
+  const tech = (data.tech || []).slice().sort(byDateDesc);
+
+  document.getElementById('life-list').innerHTML = life.map(renderLifeEntry).join('');
+
+  const lb = data.letterboxd;
+  const lbRecent = lb && lb.recent ? lb.recent.slice(0, 5) : [];
+  document.getElementById('letterboxd-title').style.display = lbRecent.length ? '' : 'none';
+  document.getElementById('letterboxd-list').innerHTML = lbRecent.length
+    ? lbRecent.map(renderLbRow).join('') + `<div class="lb-footer">more on <a href="https://letterboxd.com/${esc(lb.username)}/" target="_blank" rel="noopener">letterboxd.com/${esc(lb.username)}</a></div>`
+    : '';
+  document.getElementById('art-grid').innerHTML  = art.map(renderArtCard).join('');
+  document.getElementById('art-wip').style.display = art.length ? 'none' : 'block';
+  document.getElementById('tech-list').innerHTML = tech.map(renderTechCard).join('');
+
+  // home feed: newest N items across all three categories
+  const merged = [
+    ...life.map(i => ({...i, category:'life'})),
+    ...art.map(i  => ({...i, category:'art'})),
+    ...tech.map(i => ({...i, category:'tech'})),
+  ].sort(byDateDesc).slice(0, 5);
+
+  document.getElementById('home-list').innerHTML = merged.map(item => `
+    <div class="entry">
+      <div class="date">${esc(item.date)}</div>
+      <div class="body"><h3>${esc(item.title)}</h3><p>${esc(item.body)} See <a data-jump="${esc(item.category)}">${esc(item.category)} →</a></p></div>
+    </div>
+  `).join('');
+}
+loadContent();
+
+// clock
+function updateClock(){
+  const d = new Date();
+  document.getElementById('clock').textContent = d.toISOString().slice(0,19).replace('T',' ') + ' UTC';
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>

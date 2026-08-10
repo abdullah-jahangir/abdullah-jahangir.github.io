@@ -1,0 +1,69 @@
+{
+  "life": [
+    {
+      "date": "2026-08-09",
+      "title": "Reading: Women, by Charles Bukowski",
+      "body": "Picked it up on a whim, a few chapters in."
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Reading: Softcore, by Tirdad Zolghadr",
+      "body": "Going alongside the Bukowski, slower going."
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Listening: Zaba, by Glass Animals",
+      "body": "The whole album, on repeat this week."
+    }
+  ],
+
+  "letterboxd": {
+    "username": "fudgeboi",
+    "recent": [
+      { "title": "Mile End Kicks", "year": 2025, "rating": 2.5, "watched": "2026-07-25", "url": "https://letterboxd.com/film/mile-end-kicks/" },
+      { "title": "The Invite", "year": 2026, "rating": 4, "watched": "2026-07-18", "url": "https://letterboxd.com/film/the-invite-2026/" },
+      { "title": "Palm Springs", "year": 2020, "rating": 2.5, "watched": "2026-07-16", "url": "https://letterboxd.com/film/palm-springs-2020/" },
+      { "title": "Minions & Monsters", "year": 2026, "rating": 4, "watched": "2026-07-03", "url": "https://letterboxd.com/film/minions-monsters-2026/" },
+      { "title": "Minions", "year": 2015, "rating": 3, "watched": "2026-06-26", "url": "https://letterboxd.com/film/minions/" }
+    ]
+  },
+
+  "art": [],
+
+  "tech": [
+    {
+      "date": "2026-05-27",
+      "tag": "pwa",
+      "title": "cartcompass",
+      "body": "Wanted an excuse to make navigating the city feel a little more fun, so this points a compass needle at the nearest halal cart instead of north. No backend, no paid APIs; it pulls locations from OpenStreetMap's Overpass API and NYC's open data feed, cached locally so it still works if your connection drops.",
+      "meta": ["javascript", "pwa", "2026"],
+      "repo": "https://github.com/abdullah-jahangir/cartcompass",
+      "demo": "https://cartcompass.pages.dev"
+    },
+    {
+      "date": "2026-05-26",
+      "tag": "streamlit app",
+      "title": "rothko-image-mapper",
+      "body": "I'm a sucker for color decomposition and finding art hiding in ordinary things, so this hunts down the Mark Rothko painting closest to any photo you give it. Reduces the image to six dominant colors with K-means clustering, then compares them in CIELAB space against 100 paintings pulled from WikiArt.",
+      "meta": ["python", "streamlit", "scikit-learn", "2026"],
+      "repo": "https://github.com/abdullah-jahangir/rothko-image-mapper",
+      "demo": "https://rothko-image-mapper.streamlit.app"
+    },
+    {
+      "date": "2026-05-21",
+      "tag": "mcp server",
+      "title": "gmail-mcp",
+      "body": "Handing a third party my Google credentials never sat right with me, so I built this instead: a Gmail MCP server for Claude Code that runs on your own OAuth app, no shared credentials, no relay, nothing passing through servers you don't control.",
+      "meta": ["python", "mcp", "2026"],
+      "repo": "https://github.com/abdullah-jahangir/gmail-mcp"
+    },
+    {
+      "date": "2026-05-21",
+      "tag": "scraper",
+      "title": "partiful-week",
+      "body": "Partiful has no sort option and I like planning things out in advance, which was driving me a little insane, so this scrapes the Explore page for a city and hands back events in chronological order. It clicks through every category tab in a headless browser, listens in on the page's own API calls, then dedupes and sorts what it finds.",
+      "meta": ["python", "playwright", "2026"],
+      "repo": "https://github.com/abdullah-jahangir/partiful-week"
+    }
+  ]
+}
