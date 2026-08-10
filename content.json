@@ -3,17 +3,35 @@
     {
       "date": "2026-08-09",
       "title": "Reading: Women, by Charles Bukowski",
-      "body": "Picked it up on a whim, a few chapters in."
+      "body": "Picked it up on a whim, a few chapters in.",
+      "link": "https://www.goodreads.com/book/show/38500.Women"
     },
     {
       "date": "2026-08-09",
       "title": "Reading: Softcore, by Tirdad Zolghadr",
-      "body": "Going alongside the Bukowski, slower going."
+      "body": "Going alongside the Bukowski, slower going.",
+      "link": "https://www.goodreads.com/book/show/594209.Softcore"
     },
     {
       "date": "2026-08-09",
       "title": "Listening: Zaba, by Glass Animals",
-      "body": "The whole album, on repeat this week."
+      "body": "The whole album, on repeat this week.",
+      "link": "https://music.youtube.com/browse/MPREb_z8zhYpy2sVe",
+      "linkLabel": "listen"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Watching: New Girl",
+      "body": "A rewatch, comfort viewing.",
+      "link": "https://www.imdb.com/title/tt1826940/",
+      "linkLabel": "imdb"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Watching: Broad City",
+      "body": "Long overdue first watch.",
+      "link": "https://www.imdb.com/title/tt2578560/",
+      "linkLabel": "imdb"
     }
   ],
 

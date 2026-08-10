@@ -401,7 +401,7 @@ a:focus-visible, .chrome nav a:focus-visible{
 
   <div class="type-line"><span class="prompt">$</span><span id="typed"></span></div>
 
-  <p class="lede">I write code, take photos, and keep a running list of whatever's got my attention lately. <span class="accent">Nothing fancy here, just a page I update when something feels worth noting.</span> Pick a directory above.</p>
+  <p class="lede">I write code, take photos, and keep a running list of whatever's got my attention lately.</p>
 </div>
 
 <!-- HOME -->
@@ -443,8 +443,8 @@ a:focus-visible, .chrome nav a:focus-visible{
       <div class="stat-block"><div class="k">tools</div><div class="v">JS, Python, an old camera</div></div>
     </div>
     <div>
-      <p>I split my time between writing software and shooting film, some weeks more one than the other. This site is where both end up, along with a running list of whatever's caught my attention lately.</p>
-      <p>Nothing here is especially polished. It's more of a working notebook than a portfolio; things show up half-finished and get updated as I go.</p>
+      <p>I write software and shoot film, and this is where I keep both, along with notes on whatever else I'm into at the time.</p>
+      <p>It's not polished. Things go up half-finished and get updated later.</p>
     </div>
   </div>
 </section>
@@ -509,9 +509,12 @@ function esc(s){
 }
 
 function renderLifeEntry(item){
+  const link = item.link
+    ? ` <a href="${esc(item.link)}" target="_blank" rel="noopener" class="life-link">${esc(item.linkLabel || 'more')} →</a>`
+    : '';
   return `<div class="entry">
     <div class="date">${esc(item.date)}</div>
-    <div class="body"><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p></div>
+    <div class="body"><h3>${esc(item.title)}</h3><p>${esc(item.body)}${link}</p></div>
   </div>`;
 }
 
