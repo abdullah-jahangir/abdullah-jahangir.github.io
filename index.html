@@ -301,6 +301,29 @@ section.panel.active{display:block;}
 .lb-footer a{color:var(--ink-soft); border-bottom:1px dashed var(--ink-soft); text-decoration:none;}
 .lb-footer a:hover{color:var(--ribbon); border-color:var(--ribbon);}
 
+/* books */
+.book-row{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+  padding:10px 0;
+  border-bottom:1px solid var(--rule);
+}
+.book-row:last-child{border-bottom:none;}
+.book-row .book-title a, .book-row .book-title span.plain{color:var(--ink); text-decoration:none; font-size:13.5px;}
+.book-row .book-title a:hover{color:var(--ribbon);}
+.book-row .book-author{color:var(--ink-faint); font-size:11.5px; margin-left:6px;}
+.book-row .book-status{
+  font-family:var(--disp);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  color:var(--ink-faint);
+  white-space:nowrap;
+}
+.book-row .book-status.reading{color:var(--ribbon);}
+
 /* writing list */
 .entry{
   display:flex;
@@ -428,6 +451,9 @@ a:focus-visible, .chrome nav a:focus-visible{
 <section class="panel" id="life">
   <div class="box-title">life</div>
   <div id="life-list"></div>
+
+  <div class="box-title" id="books-title" style="display:none;">read recently</div>
+  <div id="books-list"></div>
 
   <div class="box-title" id="letterboxd-title" style="display:none;">recently watched</div>
   <div id="letterboxd-list"></div>
@@ -562,6 +588,17 @@ function renderLbRow(item){
   </div>`;
 }
 
+function renderBookRow(item){
+  const title = item.url
+    ? `<a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a>`
+    : `<span class="plain">${esc(item.title)}</span>`;
+  const statusClass = item.status === 'reading' ? ' reading' : '';
+  return `<div class="book-row">
+    <span class="book-title">${title}<span class="book-author">${esc(item.author)}</span></span>
+    <span class="book-status${statusClass}">${esc(item.status)}</span>
+  </div>`;
+}
+
 function byDateDesc(a, b){ return new Date(b.date) - new Date(a.date); }
 
 async function loadContent(){
@@ -579,6 +616,10 @@ async function loadContent(){
   const tech = (data.tech || []).slice().sort(byDateDesc);
 
   document.getElementById('life-list').innerHTML = life.map(renderLifeEntry).join('');
+
+  const books = (data.books || []).slice().sort(byDateDesc);
+  document.getElementById('books-title').style.display = books.length ? '' : 'none';
+  document.getElementById('books-list').innerHTML = books.map(renderBookRow).join('');
 
   const lb = data.letterboxd;
   const lbRecent = lb && lb.recent ? lb.recent.slice(0, 5) : [];

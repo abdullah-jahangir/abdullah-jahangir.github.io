@@ -1,10 +1,15 @@
 {
   "life": [
     {
-      "date": "2026-08-09",
-      "title": "Reading: Women, by Charles Bukowski",
-      "body": "Picked it up on a whim, a few chapters in.",
+      "date": "2026-08-11",
+      "title": "Finished: Women, by Charles Bukowski",
+      "body": "Picked it up on a whim, finished it faster than expected.",
       "link": "https://www.goodreads.com/book/show/38500.Women"
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Reading: Convenience Store Woman, by Sayaka Murata",
+      "body": "Starting this one next."
     },
     {
       "date": "2026-08-09",
@@ -45,6 +50,12 @@
       { "title": "Minions", "year": 2015, "rating": 3, "watched": "2026-06-26", "url": "https://letterboxd.com/film/minions/" }
     ]
   },
+
+  "books": [
+    { "title": "Convenience Store Woman", "author": "Sayaka Murata", "status": "reading", "date": "2026-08-11", "url": "https://www.goodreads.com/book/show/36739755-convenience-store-woman" },
+    { "title": "Women", "author": "Charles Bukowski", "status": "finished", "date": "2026-08-11", "url": "https://www.goodreads.com/book/show/38500.Women" },
+    { "title": "There Will Come Soft Rains", "author": "Ray Bradbury", "status": "finished", "date": "2026-08-06", "url": "https://www.goodreads.com/book/show/2260460.There_Will_Come_Soft_Rains" }
+  ],
 
   "art": [],
 

@@ -58,6 +58,15 @@ Two files matter:
 ```
 This isn't pulled live from Letterboxd (the site has no backend to fetch it for you); add an entry by hand each time you log a film. `"rating"` supports halves (e.g. `3.5`). The footer link always points at `letterboxd.com/{username}`.
 
+**books** (the "read recently" list on the life tab):
+```json
+"books": [
+  { "title": "Book Title", "author": "Author Name", "status": "reading", "date": "2026-08-01" },
+  { "title": "Another Book", "author": "Author Name", "status": "finished", "date": "2026-07-20", "url": "https://www.goodreads.com/book/show/xxxxx" }
+]
+```
+`"status"` is just a free-text label shown next to the entry (`reading` is highlighted); `"url"` is optional and makes the title clickable. Sorted newest `"date"` first, same as everything else.
+
 ## About images
 
 JSON can't hold a photo directly, don't try to paste image bytes into it. Instead:
